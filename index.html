@@ -4,7 +4,121 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Polar Express</title>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
   </head>
-  <body></body>
+
+  <body>
+    <h1>Luxurioius Transportation</h1>
+    <div id="content">
+      <div id="title">Welcome <span id="name">passenger</span>!</div>
+      <div id="note">Introducing Magnetic Levitation</div>
+    </div>
+    <script src="javascript/Moment.js"></script>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="text-center" id="heading">Polar Express</h1>
+        <h2 class="text-center" id="subHeading">Comfort and Convenience</h2>
+        <p class="pull-left" id="currentTime"></p>
+        <p class="pull-left" id="hour"></p>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-9">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Train Schedule</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-hover" id="train-schedule">
+                <thead>
+                  <tr>
+                    <th>Train Name</th>
+                    <th>Destination</th>
+                    <th class="text-center">Frequency (min)</th>
+                    <th class="text-center">Minutes Away</th>
+                    <th class="text-center">Next Train</th>
+                  </tr>
+                </thead>
+                <tbody id="train-schedule-rows"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Add Another Train</h3>
+              <div>
+                <div class="panel-body">
+                  <form>
+                    <div class="form-group">
+                      <label>Name of Train</label>
+                      <input
+                        type="text"
+                        class="form-control form-field"
+                        id="train-name"
+                      />
+                    </div>
+                    <div class="inputs">
+                      <label>Destination</label>
+                      <input
+                        type="text"
+                        class="form-control form-field"
+                        id="destination"
+                      />
+                    </div>
+
+                    <div class="inputs">
+                      <label>Frequency (min)</label>
+                      <input
+                        type="text"
+                        class="form-control form-field"
+                        id="frequency"
+                      />
+                    </div>
+
+                    <div class="inputs">
+                      <label>First Train Time: HH:mm - military time</label>
+                      <input
+                        type="text"
+                        class="form-control form-field"
+                        id="first-train"
+                      />
+                    </div>
+
+                    <button type="submit" class="btn btn-default" id="submit">
+                      Add Train
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="javascript/Moment.js"></script>
+  </body>
 </html>
