@@ -1,25 +1,23 @@
+var firebaseConfig = {
+  apiKey: "AIzaSyD--OSTfEjke4qbWAnOGQViO__CX0_gGVc",
+  authDomain: "testtrain-e1554.firebaseapp.com",
+  databaseURL: "https://testtrain-e1554.firebaseio.com",
+  projectId: "testtrain-e1554",
+  messagingSenderId: "687743634168",
+  appId: "1:687743634168:web:c5c03a77b49ac0a3"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+var database = firebase.database();
 $(document).ready(function() {
-  var firebaseConfig = {
-    apiKey: "AIzaSyD--OSTfEjke4qbWAnOGQViO__CX0_gGVc",
-    authDomain: "testtrain-e1554.firebaseapp.com",
-    databaseURL: "https://testtrain-e1554.firebaseio.com",
-    projectId: "testtrain-e1554",
-    storageBucket: "",
-    messagingSenderId: "687743634168",
-    appId: "1:687743634168:web:c5c03a77b49ac0a3"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-  var database = firebase.database();
-
   var trainName = "";
   var destination = "";
   var startTime = "";
   var frequency = 0;
 
   function currentTime() {
-    var current = moment().format("LT");
+    var current = moment().format("PE");
     $("#currentTime").html(current);
     setTimeout(currentTime, 2000);
   }
@@ -59,18 +57,18 @@ $(document).ready(function() {
     if (
       $("#train-name")
         .val()
-        .trim() === "" ||
+        .trim() == "" ||
       $("#destination")
         .val()
-        .trim() === "" ||
+        .trim() == "" ||
       $("#first-train")
         .val()
-        .trim() === "" ||
+        .trim() == "" ||
       $("#frequency")
         .val()
-        .trim() === ""
+        .trim() == ""
     ) {
-      alert("Fill in all details for new trains");
+      alert(TIMESTAMP);
     } else {
       trainName = $("#train-name")
         .val()
@@ -95,7 +93,7 @@ $(document).ready(function() {
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
 
-      sessionStorage.clear();
+      localStorage.clear();
     }
   });
 

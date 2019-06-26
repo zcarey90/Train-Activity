@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-database.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
@@ -19,6 +19,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
   </head>
 
   <body>
@@ -26,8 +27,7 @@
     <div id="content">
       <div id="title">Welcome <span id="name">passenger</span>!</div>
       <div id="note">Introducing Magnetic Levitation</div>
-    </div>
-    <script src="javascript/Moment.js"></script>
+    
 
     <div class="container">
       <div class="jumbotron">
@@ -70,7 +70,7 @@
                     <div class="form-group">
                       <label>Name of Train</label>
                       <input
-                        type="text"
+                        type="text-left"
                         class="form-control form-field"
                         id="train-name"
                       />
@@ -78,7 +78,7 @@
                     <div class="inputs">
                       <label>Destination</label>
                       <input
-                        type="text"
+                        type="text-left"
                         class="form-control form-field"
                         id="destination"
                       />
@@ -87,7 +87,7 @@
                     <div class="inputs">
                       <label>Frequency (min)</label>
                       <input
-                        type="text"
+                        type="text-left"
                         class="form-control form-field"
                         id="frequency"
                       />
