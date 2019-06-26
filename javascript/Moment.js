@@ -68,7 +68,6 @@ $(document).ready(function() {
         .val()
         .trim() == ""
     ) {
-      alert(TIMESTAMP);
     } else {
       trainName = $("#train-name")
         .val()
