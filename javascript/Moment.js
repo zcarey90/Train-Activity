@@ -22,7 +22,7 @@ $(document).ready(function() {
     setTimeout(currentTime, 2000);
   }
 
-  function hourNow() {
+  function hour {
     var hour = today.getHours();
   }
 
@@ -105,7 +105,7 @@ $(document).ready(function() {
     var timeRemain = timeDiff % snapshot.val().frequency;
     var minToArrival = snapshot.val().frequency - timeRemain;
     var nextTrain = moment().add(minToArrival, "minutes");
-    var key = snapshot.key;
+    
 
     var newrow = $("<tr>");
     newrow.append($("<td>" + snapshot.val().trainName + "</td>"));
@@ -152,8 +152,8 @@ $(document).ready(function() {
   username = "Passenger";
   message = "See our new destinations";
 
-  var elName = document.getElementById("name");
-  elName.textContent = username;
-  var elNote = document.getElementById("note");
-  elNote.textContent = message;
+  var Name = document.getElementById("name");
+  Name.textContent = username;
+  var Note = document.getElementById("note");
+  Note.textContent = message;
 });

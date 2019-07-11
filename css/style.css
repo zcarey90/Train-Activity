@@ -23,17 +23,17 @@ th {
 
 .panel-title {
   font-weight: italic;
-  border-color: green;
+  border-color: blue;
 }
 
 h2 {
-  color: greenyellow;
+  color: blueviolet;
 }
 
 div {
-  color: red;
+  color: blueviolet;
 }
 
 th {
-  color: green;
+  color: blueviolet;
 }
