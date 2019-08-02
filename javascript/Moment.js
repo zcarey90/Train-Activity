@@ -22,80 +22,105 @@ $(document).ready(function() {
     setTimeout(currentTime, 2000);
   }
 
-  function hour {
+  function hour() {
     var hour = today.getHours();
   }
 
-  $(".form-field").on("keyup", function() {
-    var traintemp = $("#train-name")
-      .val()
-      .trim();
-    var citytemp = $("#destination")
-      .val()
-      .trim();
-    var timetemp = $("#first-train")
-      .val()
-      .trim();
-    var freqtemp = $("#frequency")
-      .val()
-      .trim();
+  // $(".form-field").on("keyup", function() {
+  //   var traintemp = $("#train-name")
+  //     .val()
+  //     .trim();
+  //   var citytemp = $("#destination")
+  //     .val()
+  //     .trim();
+  //   var timetemp = $("#first-train")
+  //     .val()
+  //     .trim();
+  //   var freqtemp = $("#frequency")
+  //     .val()
+  //     .trim();
 
-    localStorage.setItem("train", traintemp);
-    localStorage.setItem("city", citytemp);
-    localStorage.setItem("time", timetemp);
-    localStorage.setItem("freq", freqtemp);
-  });
+  //   localStorage.setItem("train", traintemp);
+  //   localStorage.setItem("city", citytemp);
+  //   localStorage.setItem("time", timetemp);
+  //   localStorage.setItem("freq", freqtemp);
+  // });
 
-  $("#train-name").val(localStorage.getItem("train"));
-  $("#destination").val(localStorage.getItem("city"));
-  $("#first-train").val(localStorage.getItem("time"));
-  $("#frequency").val(localStorage.getItem("freq"));
+  // $("#train-name").val(localStorage.getItem("train"));
+  // $("#destination").val(localStorage.getItem("city"));
+  // $("#first-train").val(localStorage.getItem("time"));
+  // $("#frequency").val(localStorage.getItem("freq"));
 
-  $("#submit").on("click", function(event) {
+  // $("#submit").on("click", function(event) {
+  //   event.preventDefault();
+
+  //   if (
+  //     $("#train-name")
+  //       .val()
+  //       .trim() == "" ||
+  //     $("#destination")
+  //       .val()
+  //       .trim() == "" ||
+  //     $("#first-train")
+  //       .val()
+  //       .trim() == "" ||
+  //     $("#frequency")
+  //       .val()
+  //       .trim() == ""
+  //   ) {
+  //   } else {
+  //     trainName = $("#train-name")
+  //       .val()
+  //       .trim();
+  //     destination = $("#destination")
+  //       .val()
+  //       .trim();
+  //     startTime = $("#first-train")
+  //       .val()
+  //       .trim();
+  //     frequency = $("#frequency")
+  //       .val()
+  //       .trim();
+
+  //     $(".form-field").val("");
+
+  //     database.ref().push({
+  //       trainName: trainName,
+  //       destination: destination,
+  //       frequency: frequency,
+  //       startTime: startTime,
+  //       dateAdded: firebase.database.ServerValue.TIMESTAMP
+  //     });
+
+  //     localStorage.clear();
+  //   }
+  // });
+
+  $("#submit").on("click", finalResults);
+
+  function finalResults(event) {
     event.preventDefault();
+    var trainName = $("#train-name")
+      .val()
+      .trim();
+    var destination = $("#destination")
+      .val()
+      .trim();
+    var frequency = $("#frequency")
+      .val()
+      .trim();
+    var startTime = $("#first-train")
+      .val()
+      .trim();
 
-    if (
-      $("#train-name")
-        .val()
-        .trim() == "" ||
-      $("#destination")
-        .val()
-        .trim() == "" ||
-      $("#first-train")
-        .val()
-        .trim() == "" ||
-      $("#frequency")
-        .val()
-        .trim() == ""
-    ) {
-    } else {
-      trainName = $("#train-name")
-        .val()
-        .trim();
-      destination = $("#destination")
-        .val()
-        .trim();
-      startTime = $("#first-train")
-        .val()
-        .trim();
-      frequency = $("#frequency")
-        .val()
-        .trim();
-
-      $(".form-field").val("");
-
-      database.ref().push({
-        trainName: trainName,
-        destination: destination,
-        frequency: frequency,
-        startTime: startTime,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP
-      });
-
-      localStorage.clear();
-    }
-  });
-
+    database.ref().push({
+      trainName: trainName,
+      destination: destination,
+      frequency: frequency,
+      startTime: startTime,
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
+  }
   database.ref().on("child_added", function(snapshot) {
     var startTimeConverted = moment(snapshot.val().startTime, "hh:mm").subtract(
       1,
@@ -105,31 +130,43 @@ $(document).ready(function() {
     var timeRemain = timeDiff % snapshot.val().frequency;
     var minToArrival = snapshot.val().frequency - timeRemain;
     var nextTrain = moment().add(minToArrival, "minutes");
-    
+    var trainName = snapshot.val().trainName;
+    var destination = snapshot.val().destination;
+    var frequency = snapshot.val().frequency;
 
-    var newrow = $("<tr>");
-    newrow.append($("<td>" + snapshot.val().trainName + "</td>"));
-    newrow.append($("<td>" + snapshot.val().destination + "</td>"));
-    newrow.append(
-      $("<td class='text-center'>" + snapshot.val().frequency + "</td>")
-    );
-    newrow.append(
-      $("<td class='text-center'>" + moment(nextTrain).format("LT") + "</td>")
-    );
-    newrow.append($("<td class='text-center'>" + minToArrival + "</td>"));
-    newrow.append(
-      $(
-        "<td class='text-center'><button class='arrival btn btn-danger btn-xs' data-key='" +
-          key +
-          "'>X</button></td>"
-      )
+    var tablerow = $("<tr>").append(
+      $("<td>").text(trainName),
+      $("<td>").text(destination),
+      $("<td>").text(frequency),
+      $("<td>").text(minToArrival),
+      $("<td>").text(nextTrain)
     );
 
-    if (minToArrival < 6) {
-      newrow.addClass("info");
-    }
+    $("#train-schedule-rows").append(tablerow);
 
-    $("#train-table-rows").append(newrow);
+    // var newrow = $("<tr>");
+    // newrow.append($("<td>" + snapshot.val().trainName + "</td>"));
+    // newrow.append($("<td>" + snapshot.val().destination + "</td>"));
+    // newrow.append(
+    //   $("<td class='text-center'>" + snapshot.val().frequency + "</td>")
+    // );
+    // newrow.append(
+    //   $("<td class='text-center'>" + moment(nextTrain).format("LT") + "</td>")
+    // );
+    // newrow.append($("<td class='text-center'>" + minToArrival + "</td>"));
+    // newrow.append(
+    //   $(
+    //     "<td class='text-center'><button class='arrival btn btn-danger btn-xs' data-key='" +
+    //       key +
+    //       "'>X</button></td>"
+    //   )
+    //  );
+
+    // if (minToArrival < 6) {
+    //   newrow.addClass("info");
+    // }
+
+    //   $("#train-table-rows").append(newrow);
   });
 
   $(document).on("click", ".arrival", function() {

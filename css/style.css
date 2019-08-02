@@ -1,6 +1,7 @@
 body {
-  background-image: url("../image/PolarExpress.jpg");
+  /* background-image: url("../image/PolarExpress.jpg"); */
   background-color: rgb(38, 90, 141);
+  color: powderblue;
 }
 
 h1 {
