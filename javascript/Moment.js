@@ -26,76 +26,6 @@ $(document).ready(function() {
     var hour = today.getHours();
   }
 
-  // $(".form-field").on("keyup", function() {
-  //   var traintemp = $("#train-name")
-  //     .val()
-  //     .trim();
-  //   var citytemp = $("#destination")
-  //     .val()
-  //     .trim();
-  //   var timetemp = $("#first-train")
-  //     .val()
-  //     .trim();
-  //   var freqtemp = $("#frequency")
-  //     .val()
-  //     .trim();
-
-  //   localStorage.setItem("train", traintemp);
-  //   localStorage.setItem("city", citytemp);
-  //   localStorage.setItem("time", timetemp);
-  //   localStorage.setItem("freq", freqtemp);
-  // });
-
-  // $("#train-name").val(localStorage.getItem("train"));
-  // $("#destination").val(localStorage.getItem("city"));
-  // $("#first-train").val(localStorage.getItem("time"));
-  // $("#frequency").val(localStorage.getItem("freq"));
-
-  // $("#submit").on("click", function(event) {
-  //   event.preventDefault();
-
-  //   if (
-  //     $("#train-name")
-  //       .val()
-  //       .trim() == "" ||
-  //     $("#destination")
-  //       .val()
-  //       .trim() == "" ||
-  //     $("#first-train")
-  //       .val()
-  //       .trim() == "" ||
-  //     $("#frequency")
-  //       .val()
-  //       .trim() == ""
-  //   ) {
-  //   } else {
-  //     trainName = $("#train-name")
-  //       .val()
-  //       .trim();
-  //     destination = $("#destination")
-  //       .val()
-  //       .trim();
-  //     startTime = $("#first-train")
-  //       .val()
-  //       .trim();
-  //     frequency = $("#frequency")
-  //       .val()
-  //       .trim();
-
-  //     $(".form-field").val("");
-
-  //     database.ref().push({
-  //       trainName: trainName,
-  //       destination: destination,
-  //       frequency: frequency,
-  //       startTime: startTime,
-  //       dateAdded: firebase.database.ServerValue.TIMESTAMP
-  //     });
-
-  //     localStorage.clear();
-  //   }
-  // });
-
   $("#submit").on("click", finalResults);
 
   function finalResults(event) {
@@ -143,30 +73,6 @@ $(document).ready(function() {
     );
 
     $("#train-schedule-rows").append(tablerow);
-
-    // var newrow = $("<tr>");
-    // newrow.append($("<td>" + snapshot.val().trainName + "</td>"));
-    // newrow.append($("<td>" + snapshot.val().destination + "</td>"));
-    // newrow.append(
-    //   $("<td class='text-center'>" + snapshot.val().frequency + "</td>")
-    // );
-    // newrow.append(
-    //   $("<td class='text-center'>" + moment(nextTrain).format("LT") + "</td>")
-    // );
-    // newrow.append($("<td class='text-center'>" + minToArrival + "</td>"));
-    // newrow.append(
-    //   $(
-    //     "<td class='text-center'><button class='arrival btn btn-danger btn-xs' data-key='" +
-    //       key +
-    //       "'>X</button></td>"
-    //   )
-    //  );
-
-    // if (minToArrival < 6) {
-    //   newrow.addClass("info");
-    // }
-
-    //   $("#train-table-rows").append(newrow);
   });
 
   $(document).on("click", ".arrival", function() {
